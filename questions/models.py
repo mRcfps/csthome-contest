@@ -17,7 +17,7 @@ class Single(models.Model):
 class Multiple(models.Model):
 
     question = models.CharField(max_length=200)
-    answers = models.CharField(max_length=4)
+    answers = models.CharField(max_length=10)
 
     class Meta:
         verbose_name = "多选题"
