@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
 
     # Contest apps
-    'contest',
+    'questions',
 ]
 
 MIDDLEWARE = [
