@@ -16,8 +16,8 @@ class SingleQuestionTests(APITestCase):
 
     def test_get_question_by_id(self):
         """Ensure that we can correctly get the question by its id."""
-        url = reverse('question:single_detail')
-        response = self.client.get(url, args=[self.q1.id])
+        url = reverse('questions:single_detail', args=[self.q1.id])
+        response = self.client.get(url)
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data['question'], self.q1.question)
@@ -35,8 +35,8 @@ class MultipleQuestionTests(APITestCase):
 
     def test_get_question_by_id(self):
         """Ensure that we can correctly get the question by its id."""
-        url = reverse('question:multiple_detail')
-        response = self.client.get(url, args=[self.q2.id])
+        url = reverse('questions:multiple_detail', args=[self.q2.id])
+        response = self.client.get(url)
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data['question'], self.q2.question)
