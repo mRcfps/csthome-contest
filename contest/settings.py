@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 
     # Contest apps
     'questions',
+    'users',
 ]
 
 MIDDLEWARE = [
