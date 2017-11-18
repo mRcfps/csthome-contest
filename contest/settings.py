@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # DRF apps
     'rest_framework',
     'rest_framework.authtoken',
+    'rest_framework_docs',
 
     # Contest apps
     'questions',
