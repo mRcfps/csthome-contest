@@ -4,3 +4,6 @@ venv/
 # python JIT caches
 *.pyc
 __pycache__
+
+# private key
+pf.pem
