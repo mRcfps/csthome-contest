@@ -9,6 +9,6 @@ class Contestant(models.Model):
     score = models.PositiveIntegerField(default=0)
 
     class Meta:
-        ordering = ('-score')
+        ordering = ('-score',)
         verbose_name = "参赛者"
         verbose_name_plural = verbose_name
