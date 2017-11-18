@@ -2,7 +2,7 @@ FROM python:3.6-alpine
 
 # Install dependencies
 COPY requirements.txt /
-RUN pip install -r requirements.txt
+RUN pip install -i https://mirrors.aliyun.com/pypi/simple/ -r requirements.txt
 
 # Add src and collect static files
 COPY . /
