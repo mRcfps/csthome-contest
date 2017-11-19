@@ -13,6 +13,10 @@ class UserTests(APITestCase):
         self.user = User.objects.create_user(
             username='test', password='test'
         )
+        self.contestant = Contestant.objects.create(
+            user=self.user,
+            name='marc'
+        )
         self.client = APIClient()
 
     def test_login(self):
@@ -22,6 +26,9 @@ class UserTests(APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertNotEqual(response.data['token'], None)
+
+        self.contestant.refresh_from_db()
+        self.assertEqual(self.contestant.logged, True)
 
 
 class ContestantTests(APITestCase):
@@ -37,9 +44,22 @@ class ContestantTests(APITestCase):
         )
         self.client = APIClient()
 
-    def test_get_score_board(self):
-        url = reverse('users:scores')
+    def test_get_contestants_list(self):
+        url = reverse('users:contestant_list')
         response = self.client.get(url)
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data[0]['score'], 50)
+
+    def test_get_contestant_detail(self):
+        url = reverse('users:contestant_detail', args=[self.user.id])
+        response = self.client.get(url)
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def test_update_contestant_detail(self):
+        url = reverse('users:contestant_detail', args=[self.user.id])
+        data = {'user': self.user.id, 'name': 'marc', 'score': 100}
+        response = self.client.put(url, data)
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(self.contestant.refresh_from_db().score, 100)
