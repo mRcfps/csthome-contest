@@ -55,6 +55,7 @@ class ContestantTests(APITestCase):
         response = self.client.get(url)
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data['name'], self.contestant.name)
 
     def test_update_contestant_detail(self):
         url = reverse('users:contestant_detail', args=[self.user.id])
@@ -62,4 +63,6 @@ class ContestantTests(APITestCase):
         response = self.client.put(url, data)
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(self.contestant.refresh_from_db().score, 100)
+
+        self.contestant.refresh_from_db()
+        self.assertEqual(self.contestant.score, 100)
