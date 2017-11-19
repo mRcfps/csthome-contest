@@ -7,6 +7,7 @@ class Contestant(models.Model):
     user = models.OneToOneField(User)
     name = models.CharField(max_length=10)
     score = models.PositiveIntegerField(default=0)
+    logged = models.BooleanField(default=False)
 
     class Meta:
         ordering = ('-score',)
