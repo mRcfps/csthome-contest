@@ -9,8 +9,13 @@ urlpatterns = [
         name='login'
     ),
     url(
-        r'^scores/$',
-        views.ScoreBoardView.as_view(),
-        name='scores'
+        r'^contestants/$',
+        views.ContestantsListView.as_view(),
+        name='contestant_list'
+    ),
+    url(
+        r'^contestants/(?P<user_id>\d+)/$',
+        views.ContestantsDetailView.as_view(),
+        name='contestant_detail'
     ),
 ]

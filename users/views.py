@@ -1,3 +1,6 @@
+from django.contrib.auth.models import User
+from django.shortcuts import get_object_or_404
+
 from rest_framework import generics
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.serializers import AuthTokenSerializer
@@ -21,8 +24,18 @@ class UserLoginView(APIView):
         return Response({'token': token.key})
 
 
-class ScoreBoardView(generics.ListAPIView):
-    """获取所有选手的比分"""
+class ContestantsListView(generics.ListAPIView):
+    """获取所有参赛者的信息"""
 
     serializer_class = ContestantSerializer
     queryset = Contestant.objects.all()
+
+
+class ContestantsDetailView(generics.RetrieveUpdateAPIView):
+    """根据用户 ID 获取（更新）单个参赛者的信息"""
+
+    serializer_class = ContestantSerializer
+
+    def get_object(self):
+        user = get_object_or_404(User, id=self.kwargs['user_id'])
+        return Contestant.objects.get(user=user)
