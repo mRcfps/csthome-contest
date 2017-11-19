@@ -28,7 +28,7 @@ class UserLoginView(APIView):
 
         # Generate or get token for the user
         token, created = Token.objects.get_or_create(user=user)
-        return Response({'token': token.key})
+        return Response({'id': user.id, 'token': token.key})
 
 
 class ContestantsListView(generics.ListAPIView):

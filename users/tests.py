@@ -26,6 +26,7 @@ class UserTests(APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertNotEqual(response.data['token'], None)
+        self.assertNotEqual(response.data['id'], None)
 
         self.contestant.refresh_from_db()
         self.assertEqual(self.contestant.logged, True)
