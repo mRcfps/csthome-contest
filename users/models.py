@@ -13,3 +13,6 @@ class Contestant(models.Model):
         ordering = ('-score',)
         verbose_name = "参赛者"
         verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.name
