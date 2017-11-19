@@ -1,3 +1,9 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Contestant
+
+
+@admin.register(Contestant)
+class ContestantAdmin(admin.ModelAdmin):
+
+    list_display = ('name', 'score', 'logged')
