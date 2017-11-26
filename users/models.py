@@ -16,3 +16,6 @@ class Contestant(models.Model):
 
     def __str__(self):
         return self.name
+
+    def username(self):
+        return self.user.username
